@@ -556,7 +556,7 @@ GameObject:
   - component: {fileID: 1261232290}
   m_Layer: 0
   m_Name: EnemyBat
-  m_TagString: Untagged
+  m_TagString: BatTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -708,7 +708,7 @@ MonoBehaviour:
   RigidBodyEnemy: {fileID: 1261232286}
   RayVision: 5
   RayAttack: 1
-  Velocity: 3
+  Velocity: 10
   PlayerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -720,8 +720,9 @@ MonoBehaviour:
   initialPosition: {x: 0, y: 0, z: 0}
   Target: {x: 0, y: 0, z: 0}
   fov: 0
-  anim: {fileID: 1261232288}
+  animo: {fileID: 0}
   direction: {x: 0, y: 0, z: 0}
+  SkillBat: {fileID: 915885169628378024, guid: a23cfd0282ae4e64a858baf06ba23f72, type: 3}
 --- !u!1 &1387172116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2587,7 +2588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DirectionPlayer: {fileID: 1860613212}
   idleRotationReference: {fileID: 1860613213}
-  Velocity: 20
+  Velocity: 70
   anim: {fileID: 6199175273868120468, guid: cbf4d46e3bc1fb048990e11ba6481d3d, type: 3}
 --- !u!1 &1900254479
 GameObject:

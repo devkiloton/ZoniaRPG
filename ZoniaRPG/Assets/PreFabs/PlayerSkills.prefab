@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6199175273868120471}
   m_Layer: 0
   m_Name: PlayerSkills
-  m_TagString: Untagged
+  m_TagString: PlayerSkills
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,7 +166,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DirectionPlayer: {fileID: 0}
-  Skill: {fileID: 6199175273868120470}
   idleRotationReference: {fileID: 0}
-  Velocity: 40
+  Velocity: 70
   anim: {fileID: 6199175273868120468}

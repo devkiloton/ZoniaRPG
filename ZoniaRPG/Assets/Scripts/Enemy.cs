@@ -18,28 +18,47 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float fov;
     [SerializeField]
-    private Animator anim;
+    private Animator animo;
+    public Vector3 direction;
+    private Vector3 temp;
     [SerializeField]
-    private Vector3 direction;
+    private Rigidbody2D SkillBat;
+    private float clock;
+    private float timeToInstantiate = 5;
 
     private void Start()
     {
+        
+        animo = GetComponent<Animator>();
         RayCast = 1 << LayerMask.NameToLayer("Player");
         RigidBodyEnemy = GetComponent<Rigidbody2D>();
         initialPosition = transform.position;
         Target = initialPosition;
-        PlayerRay();
+        //PlayerRay();
 
     }
     private void Update()
     {
-        if (direction.x != 0 || direction.y != 0)
+        clock = Time.timeSinceLevelLoad;
+        
+        PlayerRay();
+        if ((temp.magnitude < 5))
         {
-            anim.SetFloat("X", direction.x);
-            anim.SetFloat("Y", direction.y);
+            animo.SetFloat("X", direction.x);
+            animo.SetFloat("Y", direction.y);
+            if (clock >= timeToInstantiate)
+            {
+                GameObject.Instantiate(SkillBat, transform.position, transform.rotation);
+                timeToInstantiate += clock;
+            }
 
         }
-        PlayerRay();
+        else
+        {
+            animo.SetFloat("X", 0);
+            animo.SetFloat("Y", 0);
+        }
+        
     }
     private void OnDrawGizmosSelected()
     {
@@ -58,11 +77,11 @@ public class Enemy : MonoBehaviour
                                                  play.transform.position - transform.position,
                                                  RayVision,
                                                  PlayerMask);
-            Vector3 temp = transform.TransformDirection(play.transform.position - 
+            temp = transform.TransformDirection(play.transform.position - 
                                                         transform.position);
             Debug.DrawRay(transform.position, temp, Color.cyan);
 
-            if(!hit.collider.CompareTag(null) && hit.collider.CompareTag("Player"))
+            if(/*!hit.collider.CompareTag(null) &&*/ hit.collider.CompareTag("Player"))
             {
                 Target = play.transform.position;
             }

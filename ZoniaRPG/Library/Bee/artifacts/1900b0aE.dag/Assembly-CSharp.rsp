@@ -344,6 +344,7 @@
 "Assets/Scripts/AnimationsController.cs"
 "Assets/Scripts/Enemy.cs"
 "Assets/Scripts/Player.cs"
+"Assets/Scripts/Skills/BatSkill.cs"
 "Assets/Scripts/Skills/PurpleSkill.cs"
 -langversion:8.0
 

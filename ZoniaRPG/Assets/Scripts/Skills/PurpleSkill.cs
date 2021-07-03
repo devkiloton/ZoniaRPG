@@ -10,7 +10,7 @@ public class PurpleSkill : MonoBehaviour
     [SerializeField]
     private AnimationsController idleRotationReference;
     [SerializeField]
-    private float Velocity = 20;
+    private float Velocity = 40;
     private Rigidbody2D RigidBody;
     [SerializeField]
     private Animator anim;
@@ -19,6 +19,7 @@ public class PurpleSkill : MonoBehaviour
 
     void Start()
     {
+        anim = FindObjectOfType<Animator>();
         DirectionPlayer = FindObjectOfType<Player>();
         idleRotationReference = FindObjectOfType<AnimationsController>();
         directionIdle = new Vector2(idleRotationReference.HorizontalIdle(), idleRotationReference.VerticalIdle());
@@ -28,20 +29,23 @@ public class PurpleSkill : MonoBehaviour
 
     void Update()
     {
-        anim.SetFloat("X", DirectionPlayer.Direction.x);
-        anim.SetFloat("Y", DirectionPlayer.Direction.y);
-        RigidBody.MovePosition(transform.position +
-        Time.deltaTime * Velocity * directionPlayer.normalized);
-        if (directionPlayer.sqrMagnitude == 0)
+        if (anim.tag == "PlayerSkills") 
         {
-            
-            anim.SetFloat("XIdle", idleRotationReference.HorizontalIdle());
-            anim.SetFloat("YIdle", idleRotationReference.VerticalIdle());
-            anim.SetFloat("Velocity", idleRotationReference.Velocity());
-            RigidBody.MovePosition((Vector2)(transform.position) +
-                                   Time.deltaTime * Velocity * directionIdle.normalized);
-            
+            anim.SetFloat("X", DirectionPlayer.Direction.x);
+            anim.SetFloat("Y", DirectionPlayer.Direction.y);
+            RigidBody.MovePosition(transform.position +
+            Time.deltaTime * Velocity * directionPlayer.normalized);
+            if (directionPlayer.magnitude < 0.1)
+            {
+
+                anim.SetFloat("XIdle", idleRotationReference.HorizontalIdle());
+                anim.SetFloat("YIdle", idleRotationReference.VerticalIdle());
+                anim.SetFloat("Velocity", idleRotationReference.Velocity());
+                RigidBody.MovePosition((Vector2)(transform.position) +
+                                       Time.deltaTime * Velocity * directionIdle.normalized);
+
+            }
+            Debug.Log(directionPlayer.x);
         }
-        Debug.Log(directionPlayer.x);
     }
 }
