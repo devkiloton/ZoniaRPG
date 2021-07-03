@@ -14,8 +14,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     private Vector3 initialPosition;
-    [SerializeField]
-    private Vector3 target;
+    public Vector3 Target;
     [SerializeField]
     private float fov;
     [SerializeField]
@@ -28,8 +27,8 @@ public class Enemy : MonoBehaviour
         RayCast = 1 << LayerMask.NameToLayer("Player");
         RigidBodyEnemy = GetComponent<Rigidbody2D>();
         initialPosition = transform.position;
-        target = initialPosition;
-        //PlayerRay();
+        Target = initialPosition;
+        PlayerRay();
 
     }
     private void Update()
@@ -65,24 +64,24 @@ public class Enemy : MonoBehaviour
 
             if(!hit.collider.CompareTag(null) && hit.collider.CompareTag("Player"))
             {
-                target = play.transform.position;
+                Target = play.transform.position;
             }
             else
             {
-                target = initialPosition;
+                Target = initialPosition;
             }
-            float distTemp = Vector3.Distance(target, transform.position);
-            direction = (target - transform.position).normalized;
+            float distTemp = Vector3.Distance(Target, transform.position);
+            direction = (Target - transform.position).normalized;
 
-            if(target!= initialPosition && distTemp < RayAttack)
+            if(Target!= initialPosition && distTemp < RayAttack)
             {
 
             }
             else
             {
-                RigidBodyEnemy.MovePosition(transform.position + direction * Velocity * Time.deltaTime);
+                RigidBodyEnemy.MovePosition(transform.position + direction.normalized * Velocity * Time.deltaTime);
             }
-            if(target== initialPosition && distTemp <= 0.02f)
+            if(Target== initialPosition && distTemp <= 0.02f)
             {
                 transform.position = initialPosition;
             }

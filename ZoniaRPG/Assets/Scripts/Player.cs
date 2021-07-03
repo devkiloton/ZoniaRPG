@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float speed;
     public Vector2 Direction { get; private set; }
+    public GameObject Skill;
 
     private void Start()
     {
@@ -19,6 +20,10 @@ public class Player : MonoBehaviour
     public void Update()
     {
         input();
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            GameObject skill = Instantiate(Skill, transform.position, transform.rotation);
+        }
     }
     public void FixedUpdate()
     {

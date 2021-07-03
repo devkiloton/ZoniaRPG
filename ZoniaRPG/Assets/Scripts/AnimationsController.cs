@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnimationsController : MonoBehaviour
 {
-    private Animator anim;
+    public Animator anim { get; private set; }
     void Awake()
     {
         anim = GetComponent<Animator>();
@@ -19,5 +19,20 @@ public class AnimationsController : MonoBehaviour
             anim.SetFloat("HorizontalIdle", direction.x);
             anim.SetFloat("VerticalIdle", direction.y);
         }
+    }
+    public float HorizontalIdle()
+    {
+        float horizontalIdle = anim.GetFloat("HorizontalIdle");
+        return horizontalIdle;
+    }
+    public float VerticalIdle()
+    {
+        float verticalIdle = anim.GetFloat("VerticalIdle");
+        return verticalIdle;
+    }
+    public float Velocity()
+    {
+        float velocity = anim.GetFloat("Velocity");
+        return velocity;
     }
 }

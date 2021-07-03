@@ -601,7 +601,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: -61467883142322136, guid: 3cfef716e6f459f42b7a472dda861e5e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -706,9 +706,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RigidBodyEnemy: {fileID: 1261232286}
-  RayVision: 4
+  RayVision: 5
   RayAttack: 1
-  Velocity: 16
+  Velocity: 3
   PlayerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -718,7 +718,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   initialPosition: {x: 0, y: 0, z: 0}
-  target: {x: 0, y: 0, z: 0}
+  Target: {x: 0, y: 0, z: 0}
   fov: 0
   anim: {fileID: 1261232288}
   direction: {x: 0, y: 0, z: 0}
@@ -2362,6 +2362,7 @@ GameObject:
   - component: {fileID: 1860613213}
   - component: {fileID: 1860613215}
   - component: {fileID: 1860613214}
+  - component: {fileID: 1860613216}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -2488,6 +2489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  Skill: {fileID: 6199175273868120470, guid: cbf4d46e3bc1fb048990e11ba6481d3d, type: 3}
 --- !u!114 &1860613213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2571,6 +2573,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1860613216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860613207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f80492a9f4373774f84ce50b6dbcd8c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DirectionPlayer: {fileID: 1860613212}
+  idleRotationReference: {fileID: 1860613213}
+  Velocity: 20
+  anim: {fileID: 6199175273868120468, guid: cbf4d46e3bc1fb048990e11ba6481d3d, type: 3}
 --- !u!1 &1900254479
 GameObject:
   m_ObjectHideFlags: 0
