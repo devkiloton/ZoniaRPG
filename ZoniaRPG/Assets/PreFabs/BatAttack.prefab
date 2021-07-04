@@ -166,9 +166,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyScript: {fileID: 0}
-  RigidBodyBat: {fileID: 915885169628378024}
-  Target:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  Velocity: 40
+  velocity: 3.5

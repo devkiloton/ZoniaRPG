@@ -705,24 +705,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae5f3014858c4774d977eb72de24f77b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RigidBodyEnemy: {fileID: 1261232286}
-  RayVision: 9
+  rayVisionStatic: 4
+  rayVisionMoving: 9
   RayAttack: 1
+  rayLongRangeAttack: 4
   Velocity: 10
-  PlayerMask:
+  playerMask:
     serializedVersion: 2
     m_Bits: 8
-  Player: []
-  PLAYER: []
-  RayCast:
-    serializedVersion: 2
-    m_Bits: 8
-  initialPosition: {x: 0, y: 0, z: 0}
-  Target: {x: 0, y: 0, z: 0}
-  fov: 0
-  animo: {fileID: 0}
-  direction: {x: 0, y: 0, z: 0}
   SkillBat: {fileID: 915885169628378024, guid: a23cfd0282ae4e64a858baf06ba23f72, type: 3}
+  Target: {x: 0, y: 0, z: 0}
+  direction: {x: 0, y: 0, z: 0}
 --- !u!1 &1387172116
 GameObject:
   m_ObjectHideFlags: 0

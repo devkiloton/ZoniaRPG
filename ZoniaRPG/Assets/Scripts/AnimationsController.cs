@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnimationsController : MonoBehaviour
 {
-    public Animator anim { get; private set; }
+    private Animator anim;
     void Awake()
     {
         anim = GetComponent<Animator>();

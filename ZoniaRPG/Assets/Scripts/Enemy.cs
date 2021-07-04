@@ -5,46 +5,47 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public Rigidbody2D RigidBodyEnemy;
-    public float RayVision, RayAttack, Velocity;
-    public LayerMask PlayerMask;
-
-    public GameObject[] Player;
-    public List<GameObject> PLAYER;
-    public LayerMask RayCast;
-
     [SerializeField]
-    private Vector3 initialPosition;
-    public Vector3 Target;
+    private float /*RayVision,*/ rayVisionStatic, rayVisionMoving, RayAttack, rayLongRangeAttack, Velocity;//rayvision, rayVisionStatic, rayVisionMoving
+    private float RayVision;
     [SerializeField]
-    private float fov;
-    [SerializeField]
-    private Animator animo;
-    public Vector3 direction;
-    private Vector3 temp;
+    private LayerMask playerMask;
     [SerializeField]
     private Rigidbody2D SkillBat;
+    private Animator animo;
+    private GameObject[] player;
+    private Rigidbody2D rigidBodyEnemy;
+    public static Enemy Instance { get; private set; }
+    //public List<GameObject> PLAYER;
+    //public LayerMask RayCast;
+    // TU PAROU AQUI!!!!!!!!!
+    private Vector3 initialPosition;
+    public Vector3 Target;
+    //[SerializeField]
+    //private float fov;
+    public Vector3 direction;
+    private Vector3 temp; //que porra é esse temp?
     private float clock;
     private float timeToInstantiate = 5;
-    public static Enemy Instance;
 
     private void Awake()
     {
         Instance = this;
     }
     private void Start()
-    {
-        
+    {   
         animo = GetComponent<Animator>();
-        RayCast = 1 << LayerMask.NameToLayer("Player");
-        RigidBodyEnemy = GetComponent<Rigidbody2D>();
+        //RayCast = 1 << LayerMask.NameToLayer("Player");
+        rigidBodyEnemy = GetComponent<Rigidbody2D>();
         initialPosition = transform.position;
-        Target = initialPosition;
+        //Target = initialPosition;
         //PlayerRay();
+        RayVision = rayVisionStatic;
 
     }
     private void Update()
     {
+        initialPosition = transform.position;
         clock = Time.time;
         
         PlayerRay();
@@ -57,24 +58,10 @@ public class Enemy : MonoBehaviour
         Debug.Log(timeToInstantiate);
         animo.SetFloat("X", 0);
         animo.SetFloat("Y", 0);
-        if((GameObject.FindGameObjectWithTag("SkillBat").transform.position - transform.position).magnitude > 4)
+        if((GameObject.FindGameObjectWithTag("SkillBat").transform.position - transform.position).magnitude > rayLongRangeAttack)
         {
             Destroy(GameObject.FindGameObjectWithTag("SkillBat"));
         }
-        
-        /*if ((temp.magnitude < 5))
-        {
-            animo.SetFloat("X", direction.x);
-            animo.SetFloat("Y", direction.y);
-            
-        }
-        else
-        {
-            animo.SetFloat("X", 0);
-            animo.SetFloat("Y", 0);
-            Destroy(GameObject.FindGameObjectWithTag("SkillBat"));
-
-        }*/
 
     }
     private void OnDrawGizmosSelected()
@@ -83,27 +70,32 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawWireSphere(initialPosition, RayVision);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(initialPosition, RayAttack);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(initialPosition, rayLongRangeAttack);
     }
     public void PlayerRay()
     {
-        Player = GameObject.FindGameObjectsWithTag("Player");
-        foreach (GameObject play in Player)
+        player = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject play in player)
         {
             //PLAYER.Add(play);
             RaycastHit2D hit = Physics2D.Raycast(transform.position,
                                                  play.transform.position - transform.position,
                                                  RayVision,
-                                                 PlayerMask);
+                                                 playerMask);
             temp = transform.TransformDirection(play.transform.position - 
                                                         transform.position);
             Debug.DrawRay(transform.position, temp, Color.cyan);
 
             if(/*!hit.collider.CompareTag(null) &&*/ hit.collider.CompareTag("Player"))
             {
+                RayVision = rayVisionMoving;
                 Target = play.transform.position;
             }
-            else
+            if(temp.magnitude > RayVision)
             {
+                Destroy(GameObject.FindGameObjectWithTag("SkillBat"));
+                RayVision = rayVisionStatic;
                 Target = initialPosition;
             }
             float distTemp = Vector3.Distance(Target, transform.position);
@@ -115,7 +107,7 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                RigidBodyEnemy.MovePosition(transform.position + direction.normalized * Velocity * Time.deltaTime);
+                rigidBodyEnemy.MovePosition(transform.position + direction.normalized * Velocity * Time.deltaTime);
             }
             if(Target== initialPosition && distTemp <= 0.02f)
             {

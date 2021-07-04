@@ -45,7 +45,6 @@ public class PurpleSkill : MonoBehaviour
                                        Time.deltaTime * Velocity * directionIdle.normalized);
 
             }
-            Debug.Log(directionPlayer.x);
         }
     }
 }

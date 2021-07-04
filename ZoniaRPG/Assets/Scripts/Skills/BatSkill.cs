@@ -1,36 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class BatSkill : MonoBehaviour
 {
     [SerializeField]
     private Enemy enemyScript;
-    public Rigidbody2D RigidBodyBat;
+    [SerializeField]
+    private float velocity;
     private Rigidbody2D RigidBodySkillBat;
     private Vector3 direction;
-    public GameObject[] Target;
-    public float Velocity;
+    private GameObject[] targets;
+    
     void Start()
     {
         enemyScript = FindObjectOfType<Enemy>();
-        RigidBodyBat = enemyScript.RigidBodyEnemy;
         RigidBodySkillBat = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        if(enemyScript.tag == "BatTag")
+        if(enemyScript.CompareTag("BatTag"))
         {
-            Target = GameObject.FindGameObjectsWithTag("Player");
-            Velocity = 5;
-            foreach (GameObject play in Target)
+            targets = GameObject.FindGameObjectsWithTag("Player");
+            foreach (var target in from GameObject play in targets
+                                   let target = Enemy.Instance.Target
+                                   select target)
             {
-                Vector3 targetp = Enemy.Instance.Target;
-                direction = targetp - transform.position;
-                RigidBodySkillBat.velocity = direction.normalized * Velocity;
-               // Vector3 destiny = play.transform.position;
-               // RigidBodySkillBat.MovePosition((play.transform.position - this.transform.position).normalized * Velocity * Time.deltaTime);
+                direction = (target - transform.position).normalized;
+                RigidBodySkillBat.velocity = direction * velocity;
             }
         }
         

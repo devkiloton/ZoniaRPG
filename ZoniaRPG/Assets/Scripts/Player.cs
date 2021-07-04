@@ -6,11 +6,12 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private float speed;
-    public Rigidbody2D RigidBodyPlayer { get; set; }
-    public Animator Anim { get; set; }
-    public AnimationsController MyMovements { get; set; }
+    [SerializeField]
+    private GameObject Skill;
+    public Rigidbody2D RigidBodyPlayer { get; private set; }
+    public AnimationsController MyMovements { get; private set; }
     public Vector2 Direction { get; private set; }
-    public GameObject Skill;
+    
 
     private void Start()
     {
@@ -28,9 +29,7 @@ public class Player : MonoBehaviour
     public void FixedUpdate()
     {
         RigidBodyPlayer.MovePosition(RigidBodyPlayer.position +
-                                     Direction * 
-                                     speed * 
-                                     Time.fixedDeltaTime);
+                                     speed * Time.fixedDeltaTime * Direction);
     }
 
     public void input()
