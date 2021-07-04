@@ -7,13 +7,15 @@ public class BatSkill : MonoBehaviour
     [SerializeField]
     private Enemy enemyScript;
     public Rigidbody2D RigidBodyBat;
+    private Rigidbody2D RigidBodySkillBat;
     private Vector3 direction;
     public GameObject[] Target;
     public float Velocity;
     void Start()
     {
         enemyScript = FindObjectOfType<Enemy>();
-        //RigidBodyBat = GetComponent<Rigidbody2D>();
+        RigidBodyBat = enemyScript.RigidBodyEnemy;
+        RigidBodySkillBat = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -24,8 +26,11 @@ public class BatSkill : MonoBehaviour
             Velocity = 5;
             foreach (GameObject play in Target)
             {
-                Vector3 destiny = play.transform.position;
-                RigidBodyBat.MovePosition((play.transform.position - this.transform.position).normalized * Velocity * Time.deltaTime);
+                Vector3 targetp = Enemy.Instance.Target;
+                direction = targetp - transform.position;
+                RigidBodySkillBat.velocity = direction.normalized * Velocity;
+               // Vector3 destiny = play.transform.position;
+               // RigidBodySkillBat.MovePosition((play.transform.position - this.transform.position).normalized * Velocity * Time.deltaTime);
             }
         }
         

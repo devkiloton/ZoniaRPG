@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    private float speed;
     public Rigidbody2D RigidBodyPlayer { get; set; }
     public Animator Anim { get; set; }
     public AnimationsController MyMovements { get; set; }
-    [SerializeField]
-    private float speed;
     public Vector2 Direction { get; private set; }
     public GameObject Skill;
 

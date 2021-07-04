@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using System;
 
 public class Enemy : MonoBehaviour
 {
@@ -25,7 +26,12 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D SkillBat;
     private float clock;
     private float timeToInstantiate = 5;
+    public static Enemy Instance;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
         
@@ -39,26 +45,37 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
-        clock = Time.timeSinceLevelLoad;
+        clock = Time.time;
         
         PlayerRay();
-        if ((temp.magnitude < 5))
+        if (clock > timeToInstantiate)
+        {
+            GameObject.Instantiate(SkillBat, transform.position, transform.rotation);
+            timeToInstantiate += 5;
+        }
+        Debug.Log(clock);
+        Debug.Log(timeToInstantiate);
+        animo.SetFloat("X", 0);
+        animo.SetFloat("Y", 0);
+        if((GameObject.FindGameObjectWithTag("SkillBat").transform.position - transform.position).magnitude > 4)
+        {
+            Destroy(GameObject.FindGameObjectWithTag("SkillBat"));
+        }
+        
+        /*if ((temp.magnitude < 5))
         {
             animo.SetFloat("X", direction.x);
             animo.SetFloat("Y", direction.y);
-            if (clock >= timeToInstantiate)
-            {
-                GameObject.Instantiate(SkillBat, transform.position, transform.rotation);
-                timeToInstantiate += clock;
-            }
-
+            
         }
         else
         {
             animo.SetFloat("X", 0);
             animo.SetFloat("Y", 0);
-        }
-        
+            Destroy(GameObject.FindGameObjectWithTag("SkillBat"));
+
+        }*/
+
     }
     private void OnDrawGizmosSelected()
     {

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -2511488137088659599}
   m_Layer: 0
   m_Name: BatAttack
-  m_TagString: Untagged
+  m_TagString: SkillBat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,7 +151,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &-2511488137088659599
 MonoBehaviour:
