@@ -7,6 +7,7 @@ public class UIController : MonoBehaviour
 {
     [SerializeField]
     private Slider LifeSlider;
+    [SerializeField]
     private Player player;
     void Start()
     {

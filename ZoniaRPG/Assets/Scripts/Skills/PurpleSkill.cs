@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Mirror;
 
-public class PurpleSkill : MonoBehaviour
+public class PurpleSkill : NetworkBehaviour
 {
     [SerializeField]
     private Player DirectionPlayer;
@@ -16,6 +17,7 @@ public class PurpleSkill : MonoBehaviour
     private Animator anim;
     private Vector3 directionPlayer;
     private Vector2 directionIdle;
+    public float DestroyAfter = 5;
     //private GameObject BatCollider;
 
     void Start()
@@ -28,7 +30,6 @@ public class PurpleSkill : MonoBehaviour
         RigidBody = GetComponent<Rigidbody2D>();
         //BatCollider = GameObject.FindGameObjectWithTag("BatTag");
     }
-
     void Update()
     {
         if (anim.tag == "PlayerSkills") 
@@ -57,4 +58,13 @@ public class PurpleSkill : MonoBehaviour
             Enemy.Instance.life -= 100;
         }
     }*/
+    [Server]
+    void DestroySelf()
+    {
+        NetworkServer.Destroy(gameObject);
+    }
+    public override void OnStartServer()
+    {
+        Invoke(nameof(DestroySelf), DestroyAfter);
+    }
 }

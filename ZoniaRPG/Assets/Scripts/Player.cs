@@ -2,18 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
+using Mirror;
 
-public class Player : MonoBehaviour
+public class Player : NetworkBehaviour
 {
     [SerializeField]
     private float speed;
     [SerializeField]
     private GameObject Skill;
     public Rigidbody2D RigidBodyPlayer { get; private set; }
-    public AnimationsController MyMovements { get; private set; }
+    
     public Vector2 Direction { get; private set; }
     public static Player Instance;
     public int Life = 100;
+    [Header("Components")]
+    public NavMeshAgent Agent;
+    public AnimationsController MyMovements { get; private set; }
     private void Awake()
     {
         Instance = this;
@@ -27,6 +32,7 @@ public class Player : MonoBehaviour
     }
     public void Update()
     {
+        if (!isLocalPlayer) return;
         input();
         if (Input.GetKeyUp(KeyCode.Space))
         {

@@ -59,31 +59,31 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Common\Utils.cs" />
-    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Client\StandAlone\ClientSslHelper.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Common\Message.cs" />
-    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Client\Webgl\SimpleWebJSLib.cs" />
-    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Common\BufferPool.cs" />
-    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\SimpleWebTransport.cs" />
-    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Common\Connection.cs" />
-    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Client\StandAlone\WebSocketClientStandAlone.cs" />
-    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Server\WebSocketServer.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Client\Webgl\WebSocketClientWebGl.cs" />
-    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Common\MessageProcessor.cs" />
-    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Common\ReceiveLoop.cs" />
-    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\SslConfigLoader.cs" />
-    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Common\SendLoop.cs" />
-    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Client\StandAlone\ClientHandshake.cs" />
-    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Common\Constants.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Common\ReadHelper.cs" />
+    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Server\ServerSslHelper.cs" />
+    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Common\Utils.cs" />
+    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Client\StandAlone\ClientHandshake.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Server\SimpleWebServer.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Common\EventType.cs" />
-    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Common\Log.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Server\ServerHandshake.cs" />
+    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Client\StandAlone\ClientSslHelper.cs" />
+    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Common\BufferPool.cs" />
+    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Common\MessageProcessor.cs" />
+    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Common\SendLoop.cs" />
+    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\SimpleWebTransport.cs" />
+    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Common\Connection.cs" />
+    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\SslConfigLoader.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Client\SimpleWebClient.cs" />
-    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Common\TcpConfig.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\AssemblyInfo.cs" />
-    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Server\ServerSslHelper.cs" />
+    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Client\StandAlone\WebSocketClientStandAlone.cs" />
+    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Server\WebSocketServer.cs" />
+    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Common\ReceiveLoop.cs" />
+    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Client\Webgl\SimpleWebJSLib.cs" />
+    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Common\Constants.cs" />
+    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Common\Log.cs" />
+    <Compile Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\Common\TcpConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Mirror\Runtime\Transport\SimpleWebTransport\SimpleWebTransport.asmdef" />
@@ -333,11 +333,20 @@
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.1.11f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.CecilX.Rocks">
+      <HintPath>Assets\Mirror\Plugins\Mono.Cecil\Mono.CecilX.Rocks.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.CecilX.Pdb">
+      <HintPath>Assets\Mirror\Plugins\Mono.Cecil\Mono.CecilX.Pdb.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Plastic.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.5.7\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.YamlDotNet">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.CecilX">
+      <HintPath>Assets\Mirror\Plugins\Mono.Cecil\Mono.CecilX.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.IonicZip">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
@@ -351,20 +360,11 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="unityplastic">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.5.7\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.CecilX">
-      <HintPath>Assets\Mirror\Plugins\Mono.Cecil\Mono.CecilX.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.CecilX.Rocks">
-      <HintPath>Assets\Mirror\Plugins\Mono.Cecil\Mono.CecilX.Rocks.dll</HintPath>
-    </Reference>
     <Reference Include="Mono.CecilX.Mdb">
       <HintPath>Assets\Mirror\Plugins\Mono.Cecil\Mono.CecilX.Mdb.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.CecilX.Pdb">
-      <HintPath>Assets\Mirror\Plugins\Mono.Cecil\Mono.CecilX.Pdb.dll</HintPath>
+    <Reference Include="unityplastic">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.5.7\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.1.11f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>

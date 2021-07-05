@@ -60,18 +60,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Mirror\Runtime\Transport\KCP\kcp2k\highlevel\KcpServerConnection.cs" />
+    <Compile Include="Assets\Mirror\Runtime\Transport\KCP\kcp2k\kcp\AssemblyInfo.cs" />
+    <Compile Include="Assets\Mirror\Runtime\Transport\KCP\kcp2k\kcp\Kcp.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\KCP\kcp2k\highlevel\KcpServer.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\KCP\kcp2k\highlevel\KcpConnection.cs" />
-    <Compile Include="Assets\Mirror\Runtime\Transport\KCP\kcp2k\highlevel\KcpClientConnection.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\KCP\kcp2k\highlevel\KcpClient.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\KCP\kcp2k\kcp\Pool.cs" />
-    <Compile Include="Assets\Mirror\Runtime\Transport\KCP\kcp2k\kcp\Utils.cs" />
-    <Compile Include="Assets\Mirror\Runtime\Transport\KCP\kcp2k\kcp\AssemblyInfo.cs" />
-    <Compile Include="Assets\Mirror\Runtime\Transport\KCP\kcp2k\kcp\Segment.cs" />
-    <Compile Include="Assets\Mirror\Runtime\Transport\KCP\kcp2k\highlevel\KcpChannel.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\KCP\kcp2k\highlevel\KcpHeader.cs" />
+    <Compile Include="Assets\Mirror\Runtime\Transport\KCP\kcp2k\kcp\Segment.cs" />
+    <Compile Include="Assets\Mirror\Runtime\Transport\KCP\kcp2k\highlevel\KcpClientConnection.cs" />
+    <Compile Include="Assets\Mirror\Runtime\Transport\KCP\kcp2k\highlevel\KcpChannel.cs" />
+    <Compile Include="Assets\Mirror\Runtime\Transport\KCP\kcp2k\kcp\Utils.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\KCP\kcp2k\highlevel\Log.cs" />
-    <Compile Include="Assets\Mirror\Runtime\Transport\KCP\kcp2k\kcp\Kcp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Mirror\Runtime\Transport\KCP\kcp2k\kcp2k.asmdef" />
@@ -320,11 +320,20 @@
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.1.11f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.CecilX.Rocks">
+      <HintPath>Assets\Mirror\Plugins\Mono.Cecil\Mono.CecilX.Rocks.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.CecilX.Pdb">
+      <HintPath>Assets\Mirror\Plugins\Mono.Cecil\Mono.CecilX.Pdb.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Plastic.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@1.5.7\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.YamlDotNet">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.CecilX">
+      <HintPath>Assets\Mirror\Plugins\Mono.Cecil\Mono.CecilX.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.IonicZip">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
@@ -338,20 +347,11 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="unityplastic">
-      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.5.7\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.CecilX">
-      <HintPath>Assets\Mirror\Plugins\Mono.Cecil\Mono.CecilX.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.CecilX.Rocks">
-      <HintPath>Assets\Mirror\Plugins\Mono.Cecil\Mono.CecilX.Rocks.dll</HintPath>
-    </Reference>
     <Reference Include="Mono.CecilX.Mdb">
       <HintPath>Assets\Mirror\Plugins\Mono.Cecil\Mono.CecilX.Mdb.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.CecilX.Pdb">
-      <HintPath>Assets\Mirror\Plugins\Mono.Cecil\Mono.CecilX.Pdb.dll</HintPath>
+    <Reference Include="unityplastic">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.5.7\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.1.11f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>

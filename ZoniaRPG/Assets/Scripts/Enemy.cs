@@ -46,16 +46,14 @@ public class Enemy : MonoBehaviour
         clock = Time.time;
         
         PlayerRay();
-        if (clock > timeToInstantiate)
-        {
+        //if (clock > timeToInstantiate /*&& (GameObject.FindGameObjectWithTag("BatTag").transform.position - Player.Instance.transform.position).magnitude < rayVision*/)
+        /*{
             GameObject.Instantiate(skillBat, transform.position, transform.rotation);
             timeToInstantiate += 5;
-        }
-        Debug.Log(clock);
-        Debug.Log(timeToInstantiate);
+        }*/
         animo.SetFloat("X", 0);
         animo.SetFloat("Y", 0);
-        if((GameObject.FindGameObjectWithTag("SkillBat").transform.position - transform.position).magnitude > rayLongRangeAttack)
+        if((GameObject.FindGameObjectWithTag("SkillBat").transform.position - transform.position).magnitude > rayLongRangeAttack || (direction.magnitude < 0.1))
         {
             Destroy(GameObject.FindGameObjectWithTag("SkillBat"));
         }
@@ -86,6 +84,11 @@ public class Enemy : MonoBehaviour
 
             if(/*!hit.collider.CompareTag(null) &&*/ hit.collider.CompareTag("Player"))
             {
+                if (clock > timeToInstantiate /*&& (GameObject.FindGameObjectWithTag("BatTag").transform.position - Player.Instance.transform.position).magnitude < rayVision*/)
+                {
+                    GameObject.Instantiate(skillBat, transform.position, transform.rotation);
+                    timeToInstantiate = clock + 5;
+                }
                 rayVision = rayVisionMoving;
                 Target = play.transform.position;
             }
