@@ -16,6 +16,7 @@ public class PurpleSkill : MonoBehaviour
     private Animator anim;
     private Vector3 directionPlayer;
     private Vector2 directionIdle;
+    //private GameObject BatCollider;
 
     void Start()
     {
@@ -25,6 +26,7 @@ public class PurpleSkill : MonoBehaviour
         directionIdle = new Vector2(idleRotationReference.HorizontalIdle(), idleRotationReference.VerticalIdle());
         directionPlayer = DirectionPlayer.Direction;
         RigidBody = GetComponent<Rigidbody2D>();
+        //BatCollider = GameObject.FindGameObjectWithTag("BatTag");
     }
 
     void Update()
@@ -47,4 +49,12 @@ public class PurpleSkill : MonoBehaviour
             }
         }
     }
+    /*private void OnTriggerStay2D(Collider2D collision)
+    {
+        collision = BatCollider.GetComponent<BoxCollider2D>();
+        if(collision.CompareTag("BatTag"))
+        {
+            Enemy.Instance.life -= 100;
+        }
+    }*/
 }
