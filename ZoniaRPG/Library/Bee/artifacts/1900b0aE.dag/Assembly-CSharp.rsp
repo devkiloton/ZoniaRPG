@@ -106,8 +106,30 @@
 -define:ENABLE_TILEMAP
 -define:ENABLE_TIMELINE
 -define:ENABLE_LEGACY_INPUT_MANAGER
+-define:MIRROR
+-define:MIRROR_17_0_OR_NEWER
+-define:MIRROR_18_0_OR_NEWER
+-define:MIRROR_24_0_OR_NEWER
+-define:MIRROR_26_0_OR_NEWER
+-define:MIRROR_27_0_OR_NEWER
+-define:MIRROR_28_0_OR_NEWER
+-define:MIRROR_29_0_OR_NEWER
+-define:MIRROR_30_0_OR_NEWER
+-define:MIRROR_30_5_2_OR_NEWER
+-define:MIRROR_32_1_2_OR_NEWER
+-define:MIRROR_32_1_4_OR_NEWER
+-define:MIRROR_35_0_OR_NEWER
+-define:MIRROR_35_1_OR_NEWER
+-define:MIRROR_37_0_OR_NEWER
+-define:MIRROR_38_0_OR_NEWER
+-define:MIRROR_39_0_OR_NEWER
+-define:MIRROR_40_0_OR_NEWER
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
+-r:"Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.dll"
+-r:"Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Mdb.dll"
+-r:"Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Pdb.dll"
+-r:"Assets/Mirror/Plugins/Mono.Cecil/Mono.CecilX.Rocks.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.1.11f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.1.11f1/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.1.11f1/Editor/Data/Managed/UnityEngine/UnityEditor.dll"
@@ -302,7 +324,17 @@
 -r:"C:/Program Files/Unity/Hub/Editor/2021.1.11f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll"
 -r:"C:/Users/Yarego Brozek/Desktop/GIthub/ZoniaRPG/ZoniaRPG/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll"
 -r:"C:/Users/Yarego Brozek/Desktop/GIthub/ZoniaRPG/ZoniaRPG/Library/PackageCache/com.unity.visualscripting@1.6.1/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/kcp2k.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Mirror.Authenticators.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Mirror.CompilerSymbols.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Mirror.Components.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Mirror.Editor.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Mirror.Examples.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Mirror.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Mirror.Weaver.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/PsdPlugin.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/SimpleWebTransport.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Telepathy.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.2D.Animation.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.2D.Animation.Runtime.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.2D.Animation.Triangle.Runtime.ref.dll"
@@ -346,6 +378,7 @@
 "Assets/Scripts/Player.cs"
 "Assets/Scripts/Skills/BatSkill.cs"
 "Assets/Scripts/Skills/PurpleSkill.cs"
+"Assets/Scripts/UIController.cs"
 -langversion:8.0
 
 /deterministic

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -11,7 +12,13 @@ public class Player : MonoBehaviour
     public Rigidbody2D RigidBodyPlayer { get; private set; }
     public AnimationsController MyMovements { get; private set; }
     public Vector2 Direction { get; private set; }
-    
+    public static Player Instance;
+    public int Life = 100;
+    private void Awake()
+    {
+        Instance = this;
+    }
+
 
     private void Start()
     {
@@ -24,6 +31,11 @@ public class Player : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space))
         {
             GameObject skill = Instantiate(Skill, transform.position, transform.rotation);
+        }
+        if (Life <= 0)
+        {
+            Destroy(gameObject);
+            SceneManager.LoadScene("GameOver");
         }
     }
     public void FixedUpdate()

@@ -38,6 +38,7 @@ public class BatSkill : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            Player.Instance.Life -= 20;
             Destroy(gameObject);
         }   
     }

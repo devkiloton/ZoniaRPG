@@ -110,10 +110,6 @@ public class Enemy : MonoBehaviour
             {
                 transform.position = initialPosition;
             }
-            Debug.DrawRay(transform.position, play.transform.position - transform.position, Color.blue);
-            Debug.DrawRay(transform.position, Target - transform.position, Color.green);
-            Debug.DrawRay(transform.position, transform.position + direction.normalized * velocity * Time.deltaTime, Color.gray);
-            Debug.DrawRay(transform.position, initialPosition, Color.green);
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
