@@ -10,8 +10,6 @@ ScriptsOnlyBuild:
     Mirror.Components.dll:
     - Mirror.NetworkAnimator
     - Mirror.NetworkTransform
-    Mirror.Examples.dll:
-    - Mirror.Examples.Tanks.Projectile
     Mirror.dll:
     - Mirror.NetworkIdentity
     - Mirror.NetworkManager
@@ -37,8 +35,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -62,19 +62,11 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 21
       Script: {instanceID: 0}
-    - Class: 23
-      Script: {instanceID: 0}
     - Class: 28
-      Script: {instanceID: 0}
-    - Class: 33
-      Script: {instanceID: 0}
-    - Class: 43
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
     - Class: 50
-      Script: {instanceID: 0}
-    - Class: 54
       Script: {instanceID: 0}
     - Class: 58
       Script: {instanceID: 0}
@@ -92,8 +84,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
-    - Class: 108
-      Script: {instanceID: 0}
     - Class: 114
       Script: {instanceID: 640}
     - Class: 114
@@ -101,35 +91,33 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1502}
     - Class: 114
-      Script: {instanceID: 1862}
+      Script: {instanceID: 1504}
     - Class: 114
-      Script: {instanceID: 2690}
+      Script: {instanceID: 1864}
     - Class: 114
-      Script: {instanceID: 2762}
+      Script: {instanceID: 2692}
     - Class: 114
-      Script: {instanceID: 3034}
+      Script: {instanceID: 2764}
     - Class: 114
-      Script: {instanceID: 3114}
+      Script: {instanceID: 3036}
     - Class: 114
-      Script: {instanceID: 3218}
+      Script: {instanceID: 3116}
     - Class: 114
-      Script: {instanceID: 3460}
+      Script: {instanceID: 3220}
     - Class: 114
-      Script: {instanceID: 4912}
+      Script: {instanceID: 3462}
     - Class: 114
-      Script: {instanceID: 5052}
+      Script: {instanceID: 4914}
     - Class: 114
-      Script: {instanceID: 5120}
+      Script: {instanceID: 5054}
     - Class: 114
-      Script: {instanceID: 5410}
+      Script: {instanceID: 5122}
     - Class: 114
-      Script: {instanceID: 5504}
+      Script: {instanceID: 5412}
     - Class: 114
-      Script: {instanceID: 5670}
+      Script: {instanceID: 5506}
     - Class: 114
-      Script: {instanceID: 5716}
-    - Class: 114
-      Script: {instanceID: 6148}
+      Script: {instanceID: 5718}
     - Class: 114
       Script: {instanceID: 6514}
     - Class: 114
@@ -139,8 +127,6 @@ ScriptsOnlyBuild:
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
-      Script: {instanceID: 0}
-    - Class: 136
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -184,9 +170,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1500}
     - Class: 114
-      Script: {instanceID: 2762}
+      Script: {instanceID: 1504}
     - Class: 114
-      Script: {instanceID: 6148}
+      Script: {instanceID: 2764}
     - Class: 114
       Script: {instanceID: 6514}
     - Class: 114
@@ -218,6 +204,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Image
+  - hash:
+      serializedVersion: 2
+      Hash: 699619b86d9359741a4f58540298c80b
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Text
   - hash:
       serializedVersion: 2
       Hash: bcaee4c2a83047257b5f47d6ed264b75
@@ -400,7 +392,7 @@ ScriptsOnlyBuild:
     className: UnityOnBecameVisibleMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 1c5498ad6966f14ad294279a2bcd447b
+      Hash: 5cc32bf1addda9337b58ddcbc9f8e944
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Enemy
@@ -466,7 +458,7 @@ ScriptsOnlyBuild:
     className: NetworkLerpRigidbody
   - hash:
       serializedVersion: 2
-      Hash: ccd843d3c17c60fe199103b72d45a38b
+      Hash: 9911e705b7a181864e4f1372a83ed218
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PurpleSkill
@@ -910,7 +902,7 @@ ScriptsOnlyBuild:
     className: GridLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: 7455a6b995449991267f31ab78fa6676
+      Hash: 0c47f53525dc0848e7720b468273cdce
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
@@ -1082,12 +1074,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnDeselectMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 699619b86d9359741a4f58540298c80b
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Text
   - hash:
       serializedVersion: 2
       Hash: ad425eb6c32a6f6977115fef236ef55f
@@ -1620,4 +1606,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Game.unity
   - Assets/Scenes/GameOver.unity
-  playerPath: C:/Users/Yarego Brozek/Desktop/builds_zonia_rpg/build_zonia_2/ZoniaRPG.exe
+  playerPath: C:/Users/Yarego Brozek/Desktop/builds_zonia_rpg/builds_zonia_rpg_11/ZoniaRPG.exe

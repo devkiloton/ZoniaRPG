@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 2285763279181705095}
   - component: {fileID: 2285763279181705093}
   - component: {fileID: 2285763279181705092}
-  - component: {fileID: 2285763279181705146}
   - component: {fileID: 2285763279181705147}
   - component: {fileID: 2285763279181705144}
   - component: {fileID: 2285763279181705145}
@@ -149,8 +148,8 @@ MonoBehaviour:
   syncInterval: 0.1
   speed: 5
   Skill: {fileID: 6199175273868120470, guid: cbf4d46e3bc1fb048990e11ba6481d3d, type: 3}
-  Life: 100
   Agent: {fileID: 0}
+  Shot: 32
 --- !u!114 &2285763279181705095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,22 +233,6 @@ PolygonCollider2D:
       - {x: 0.185, y: -0.14999999}
       - {x: 0.185, y: 0.11}
       - {x: 0.16499999, y: 0.17}
---- !u!114 &2285763279181705146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2285763279181705101}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f80492a9f4373774f84ce50b6dbcd8c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DirectionPlayer: {fileID: 2285763279181705094}
-  idleRotationReference: {fileID: 2285763279181705095}
-  Velocity: 70
-  anim: {fileID: 6199175273868120468, guid: cbf4d46e3bc1fb048990e11ba6481d3d, type: 3}
 --- !u!114 &2285763279181705147
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 
 public class UIController : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class UIController : MonoBehaviour
     private Player player;
     void Start()
     {
-        player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        //player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        player = GetComponentInParent<Player>();
     }
     public void Update()
     {

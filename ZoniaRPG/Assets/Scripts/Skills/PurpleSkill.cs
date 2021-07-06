@@ -7,28 +7,33 @@ using Mirror;
 public class PurpleSkill : NetworkBehaviour
 {
     [SerializeField]
-    private Player DirectionPlayer;
+    public Player DirectionPlayer;
     [SerializeField]
-    private AnimationsController idleRotationReference;
+    public AnimationsController idleRotationReference;
     [SerializeField]
-    private float Velocity = 40;
+    private float Velocity = 70;
     private Rigidbody2D RigidBody;
     [SerializeField]
     private Animator anim;
     private Vector3 directionPlayer;
-    private Vector2 directionIdle;
+    private Vector2 directionIdle; //letra maiuscula
     public float DestroyAfter = 5;
     //private GameObject BatCollider;
 
     void Start()
     {
-        anim = FindObjectOfType<Animator>();
-        DirectionPlayer = FindObjectOfType<Player>();
-        idleRotationReference = FindObjectOfType<AnimationsController>();
+        anim = GetComponent<Animator>();
+            //DirectionPlayer = FindObjectOfType<Player>();
+            //idleRotationReference = FindObjectOfType<AnimationsController>();
         directionIdle = new Vector2(idleRotationReference.HorizontalIdle(), idleRotationReference.VerticalIdle());
         directionPlayer = DirectionPlayer.Direction;
         RigidBody = GetComponent<Rigidbody2D>();
         //BatCollider = GameObject.FindGameObjectWithTag("BatTag");
+    }
+    [Server]
+    void DestroySelf()
+    {
+        NetworkServer.Destroy(GameObject.FindGameObjectWithTag("PlayerSkills"));
     }
     void Update()
     {
@@ -58,11 +63,7 @@ public class PurpleSkill : NetworkBehaviour
             Enemy.Instance.life -= 100;
         }
     }*/
-    [Server]
-    void DestroySelf()
-    {
-        NetworkServer.Destroy(gameObject);
-    }
+    
     public override void OnStartServer()
     {
         Invoke(nameof(DestroySelf), DestroyAfter);

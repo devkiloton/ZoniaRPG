@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 //using System;
 
-public class Enemy : MonoBehaviour
+public class Enemy : NetworkBehaviour
 {
     [SerializeField]
     private float rayVisionStatic, rayVisionMoving, rayAttack, rayLongRangeAttack, velocity;
@@ -13,7 +14,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private Rigidbody2D skillBat;
     private Animator animo;
-    private GameObject[] player;
+    private GameObject player;
     private Rigidbody2D rigidBodyEnemy;
     public static Enemy Instance { get; private set; }
     private Vector3 initialPosition;
@@ -29,7 +30,7 @@ public class Enemy : MonoBehaviour
         Instance = this;
     }
     private void Start()
-    {   
+    {
         animo = GetComponent<Animator>();
         rigidBodyEnemy = GetComponent<Rigidbody2D>();
         initialPosition = transform.position;
@@ -38,13 +39,14 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
-        if(life <= 0)
+        //if(isLocalPlayer) return;
+        if (life <= 0)
         {
             Destroy(gameObject);
         }
         initialPosition = transform.position;
         clock = Time.time;
-        
+
         PlayerRay();
         //if (clock > timeToInstantiate /*&& (GameObject.FindGameObjectWithTag("BatTag").transform.position - Player.Instance.transform.position).magnitude < rayVision*/)
         /*{
@@ -53,7 +55,7 @@ public class Enemy : MonoBehaviour
         }*/
         animo.SetFloat("X", 0);
         animo.SetFloat("Y", 0);
-        if((GameObject.FindGameObjectWithTag("SkillBat").transform.position - transform.position).magnitude > rayLongRangeAttack || (direction.magnitude < 0.1))
+        if ((GameObject.FindGameObjectWithTag("SkillBat").transform.position - transform.position).magnitude > rayLongRangeAttack || (direction.magnitude < 0.1))
         {
             Destroy(GameObject.FindGameObjectWithTag("SkillBat"));
         }
@@ -70,53 +72,55 @@ public class Enemy : MonoBehaviour
     }
     public void PlayerRay()
     {
-        player = GameObject.FindGameObjectsWithTag("Player");
-        foreach (GameObject play in player)
+
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position,
+                                             player.transform.position - transform.position,
+                                             rayVision,
+                                             playerMask);
+        temp = transform.TransformDirection(player.transform.position -
+                                                    transform.position);
+        Debug.DrawRay(transform.position, temp, Color.cyan);
+
+        if (/*!hit.collider.CompareTag(null) &&*/ hit.collider.CompareTag("Player"))
         {
-            //PLAYER.Add(play);
-            RaycastHit2D hit = Physics2D.Raycast(transform.position,
-                                                 play.transform.position - transform.position,
-                                                 rayVision,
-                                                 playerMask);
-            temp = transform.TransformDirection(play.transform.position - 
-                                                        transform.position);
-            Debug.DrawRay(transform.position, temp, Color.cyan);
-
-            if(/*!hit.collider.CompareTag(null) &&*/ hit.collider.CompareTag("Player"))
+            if (clock > timeToInstantiate /*&& (GameObject.FindGameObjectWithTag("BatTag").transform.position - Player.Instance.transform.position).magnitude < rayVision*/)
             {
-                if (clock > timeToInstantiate /*&& (GameObject.FindGameObjectWithTag("BatTag").transform.position - Player.Instance.transform.position).magnitude < rayVision*/)
-                {
-                    GameObject.Instantiate(skillBat, transform.position, transform.rotation);
-                    timeToInstantiate = clock + 5;
-                }
-                rayVision = rayVisionMoving;
-                Target = play.transform.position;
+                GameObject.Instantiate(skillBat, transform.position, transform.rotation);
+                timeToInstantiate = clock + 5;
             }
-            if(temp.magnitude > rayVision)
-            {
-                Destroy(GameObject.FindGameObjectWithTag("SkillBat"));
-                rayVision = rayVisionStatic;
-                Target = initialPosition;
-            }
-            float distTemp = Vector3.Distance(Target, transform.position);
-            direction = (Target - transform.position).normalized;
-
-            if(Target!= initialPosition && distTemp < rayAttack)
-            {
-
-            }
-            else
-            {
-                rigidBodyEnemy.MovePosition(transform.position + direction.normalized * velocity * Time.deltaTime);
-            }
-            if(Target== initialPosition && distTemp <= 0.02f)
-            {
-                transform.position = initialPosition;
-            }
+            rayVision = rayVisionMoving;
+            Target = player.transform.position;
         }
+        if (temp.magnitude > rayVision)
+        {
+            Destroy(GameObject.FindGameObjectWithTag("SkillBat"));
+            rayVision = rayVisionStatic;
+            Target = initialPosition;
+        }
+        float distTemp = Vector3.Distance(Target, transform.position);
+        direction = (Target - transform.position).normalized;
+
+        if (Target != initialPosition && distTemp < rayAttack)
+        {
+
+        }
+        else
+        {
+            rigidBodyEnemy.MovePosition(transform.position + direction.normalized * velocity * Time.deltaTime);
+        }
+        if (Target == initialPosition && distTemp <= 0.02f)
+        {
+            transform.position = initialPosition;
+        }
+
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("Player"))
+        {
+            player = collision.gameObject;
+        }
         //collision = GameObject.FindGameObjectWithTag("SkillBat")
         if (collision.tag == "PlayerSkills")
         {
