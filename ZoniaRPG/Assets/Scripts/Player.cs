@@ -14,13 +14,12 @@ public class Player : NetworkBehaviour
     public Rigidbody2D RigidBodyPlayer { get; private set; }
     public Vector2 Direction { get; private set; }
     public static Player Instance;
-    public int Life { get; set; } = 100;
+    [SyncVar]
+    public int Life; //{ get; set; } = 100;
     [Header("Components")]
     public NavMeshAgent Agent;
     public AnimationsController MyMovements { get; private set; }
     private Canvas canvas;
-    private Vector2 a;
-
     public KeyCode Shot = KeyCode.Space;
     private void Awake()
     {
@@ -30,6 +29,7 @@ public class Player : NetworkBehaviour
 
     private void Start()
     {
+        Life = 100;
         canvas = GetComponentInChildren<Canvas>();
         if (!isLocalPlayer)
         {
@@ -56,24 +56,14 @@ public class Player : NetworkBehaviour
     [Command, ClientRpc]
     void cmdFire()
     {
-        a = new Vector2(MyMovements.HorizontalIdle(), MyMovements.VerticalIdle());
 
-        GameObject skill = Instantiate(Skill, transform.position + (Vector3)a.normalized * 2f, transform.rotation);
+        GameObject skill = Instantiate(Skill, transform.position , transform.rotation);
+        Physics2D.IgnoreCollision(skill.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         skill.GetComponent<PurpleSkill>().DirectionPlayer = this;
         skill.GetComponent<PurpleSkill>().idleRotationReference = this.MyMovements;
         NetworkServer.Spawn(skill);
-        //GameObject skill = Instantiate(Skill, transform.position + (Vector3)a.normalized * 1.3f, transform.rotation);
-        //NetworkServer.Spawn(skill);
-        //clientFire();
     }
-    /*[ClientRpc]
-    void clientFire()
-    {
-        GameObject skill = Instantiate(Skill, transform.position + (Vector3)a.normalized * 1.3f, transform.rotation);
-        skill.GetComponent<PurpleSkill>().DirectionPlayer = this;
-        skill.GetComponent<PurpleSkill>().idleRotationReference = this.MyMovements;
-        NetworkServer.Spawn(skill);
-    }*/
+
     public void input()
     {
         float x = Input.GetAxis("Horizontal");
@@ -99,7 +89,11 @@ public class Player : NetworkBehaviour
         //collision = GameObject.FindGameObjectWithTag("SkillBat")
         if (collision.tag == "PlayerSkills")
         {
-            Life -= 20;
+            if (isServer)
+            {
+                Life -= 20;
+            }
+            
         }
     }
 }

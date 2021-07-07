@@ -320,6 +320,7 @@
 -r:"Library/Bee/artifacts/1900b0aP.dag/Unity.VisualScripting.State.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aP.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/AnimationsController.cs"
+"Assets/Scripts/BatRadar.cs"
 "Assets/Scripts/Enemy.cs"
 "Assets/Scripts/Player.cs"
 "Assets/Scripts/Skills/BatSkill.cs"

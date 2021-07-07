@@ -2,6 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - AnimationsController
+    - BatRadar
     - BatSkill
     - Enemy
     - Player
@@ -93,37 +94,39 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1504}
     - Class: 114
-      Script: {instanceID: 1864}
+      Script: {instanceID: 1506}
     - Class: 114
-      Script: {instanceID: 2692}
+      Script: {instanceID: 1866}
     - Class: 114
-      Script: {instanceID: 2764}
+      Script: {instanceID: 2694}
     - Class: 114
-      Script: {instanceID: 3036}
+      Script: {instanceID: 2766}
     - Class: 114
-      Script: {instanceID: 3116}
+      Script: {instanceID: 3038}
     - Class: 114
-      Script: {instanceID: 3220}
+      Script: {instanceID: 3118}
     - Class: 114
-      Script: {instanceID: 3462}
+      Script: {instanceID: 3222}
     - Class: 114
-      Script: {instanceID: 4914}
+      Script: {instanceID: 3464}
     - Class: 114
-      Script: {instanceID: 5054}
+      Script: {instanceID: 4916}
     - Class: 114
-      Script: {instanceID: 5122}
+      Script: {instanceID: 5056}
     - Class: 114
-      Script: {instanceID: 5412}
+      Script: {instanceID: 5124}
     - Class: 114
-      Script: {instanceID: 5506}
+      Script: {instanceID: 5414}
     - Class: 114
-      Script: {instanceID: 5718}
+      Script: {instanceID: 5508}
     - Class: 114
       Script: {instanceID: 6514}
     - Class: 114
       Script: {instanceID: 7114}
     - Class: 114
       Script: {instanceID: 8646}
+    - Class: 114
+      Script: {instanceID: 33830}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -170,9 +173,9 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1500}
     - Class: 114
-      Script: {instanceID: 1504}
+      Script: {instanceID: 1506}
     - Class: 114
-      Script: {instanceID: 2764}
+      Script: {instanceID: 2766}
     - Class: 114
       Script: {instanceID: 6514}
     - Class: 114
@@ -204,6 +207,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Image
+  - hash:
+      serializedVersion: 2
+      Hash: 21a9c6dbf300fc1f6dc15ca7e2c39a37
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Slider
   - hash:
       serializedVersion: 2
       Hash: 699619b86d9359741a4f58540298c80b
@@ -392,7 +401,7 @@ ScriptsOnlyBuild:
     className: UnityOnBecameVisibleMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 5cc32bf1addda9337b58ddcbc9f8e944
+      Hash: 9a148a5fcdbc70699be5ea1d69978fd6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Enemy
@@ -902,7 +911,7 @@ ScriptsOnlyBuild:
     className: GridLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: 0c47f53525dc0848e7720b468273cdce
+      Hash: 9848ff6fe104447c69ceaa655041562c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
@@ -996,12 +1005,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: GlobalMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 21a9c6dbf300fc1f6dc15ca7e2c39a37
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Slider
   - hash:
       serializedVersion: 2
       Hash: 88e3b86c3ab08e02b94869c8fc5ce863
@@ -1602,6 +1605,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 1c754d0beb0a4a618eb63bdf6a32f077
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BatRadar
   platform: 19
   scenePathNames:
   - Assets/Scenes/Game.unity

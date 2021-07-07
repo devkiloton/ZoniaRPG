@@ -6,15 +6,16 @@ using Mirror;
 
 public class Enemy : NetworkBehaviour
 {
+    public float rayVisionStatic;
     [SerializeField]
-    private float rayVisionStatic, rayVisionMoving, rayAttack, rayLongRangeAttack, velocity;
+    private float rayVisionMoving, rayAttack, rayLongRangeAttack, velocity;
     private float rayVision;
     [SerializeField]
     private LayerMask playerMask;
     [SerializeField]
     private Rigidbody2D skillBat;
     private Animator animo;
-    private GameObject player;
+    public GameObject player;
     private Rigidbody2D rigidBodyEnemy;
     public static Enemy Instance { get; private set; }
     private Vector3 initialPosition;
@@ -92,6 +93,7 @@ public class Enemy : NetworkBehaviour
             rayVision = rayVisionMoving;
             Target = player.transform.position;
         }
+
         if (temp.magnitude > rayVision)
         {
             Destroy(GameObject.FindGameObjectWithTag("SkillBat"));
@@ -109,6 +111,7 @@ public class Enemy : NetworkBehaviour
         {
             rigidBodyEnemy.MovePosition(transform.position + direction.normalized * velocity * Time.deltaTime);
         }
+
         if (Target == initialPosition && distTemp <= 0.02f)
         {
             transform.position = initialPosition;
@@ -117,10 +120,10 @@ public class Enemy : NetworkBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        /*if (collision.CompareTag("Player"))
         {
             player = collision.gameObject;
-        }
+        }*/
         //collision = GameObject.FindGameObjectWithTag("SkillBat")
         if (collision.tag == "PlayerSkills")
         {
