@@ -18,7 +18,7 @@ public class BatRadar : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            batEnemy.player = collision.gameObject;
+            batEnemy.Player = collision.gameObject;
         }
     }
 

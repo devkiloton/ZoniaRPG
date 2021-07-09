@@ -7,6 +7,8 @@ using Mirror;
 
 public class Player : NetworkBehaviour
 {
+    [SyncVar]
+    public int Life;
     [SerializeField]
     private float speed;
     [SerializeField]
@@ -14,19 +16,16 @@ public class Player : NetworkBehaviour
     public Rigidbody2D RigidBodyPlayer { get; private set; }
     public Vector2 Direction { get; private set; }
     public static Player Instance;
-    [SyncVar]
-    public int Life; //{ get; set; } = 100;
-    [Header("Components")]
-    public NavMeshAgent Agent;
     public AnimationsController MyMovements { get; private set; }
     private Canvas canvas;
+    private GameObject skill;
+    public Vector3 InitialDirection;
     public KeyCode Shot = KeyCode.Space;
+
     private void Awake()
     {
         Instance = this;
     }
-
-
     private void Start()
     {
         Life = 100;
@@ -37,37 +36,41 @@ public class Player : NetworkBehaviour
         }
         RigidBodyPlayer = GetComponent<Rigidbody2D>();
         MyMovements = GetComponent<AnimationsController>();
+        InitialDirection = transform.position;
     }
-    public void Update()
+    private void Update()
     {
         if (!isLocalPlayer) return;
-        input();
-        if (Input.GetKeyDown(Shot))
+        Input();
+        if (UnityEngine.Input.GetKeyDown(Shot))
         {
-            cmdFire();
+            CmdFire();
         }
         DestroyPlayerNetwork();
     }
-    public void FixedUpdate()
+    private void FixedUpdate()
     {
         RigidBodyPlayer.MovePosition(RigidBodyPlayer.position +
                                      speed * Time.fixedDeltaTime * Direction);
     }
-    [Command, ClientRpc]
-    void cmdFire()
+    [Command]
+    private void CmdFire()
     {
-
-        GameObject skill = Instantiate(Skill, transform.position , transform.rotation);
+        skill = Instantiate(Skill, transform.position, transform.rotation);
         Physics2D.IgnoreCollision(skill.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         skill.GetComponent<PurpleSkill>().DirectionPlayer = this;
-        skill.GetComponent<PurpleSkill>().idleRotationReference = this.MyMovements;
         NetworkServer.Spawn(skill);
+        RpOnFire();
     }
-
-    public void input()
+    [ClientRpc]
+    private void RpOnFire()
     {
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
+        skill.GetComponent<PurpleSkill>().idleRotationReference = this.MyMovements;
+    }
+    private void Input()
+    {
+        float x = UnityEngine.Input.GetAxis("Horizontal");
+        float y = UnityEngine.Input.GetAxis("Vertical");
         Direction = new Vector2(x, y);
         if (x != 0 || y != 0)
         {
@@ -76,7 +79,7 @@ public class Player : NetworkBehaviour
         }
     }
     [Command]
-    void DestroyPlayerNetwork()
+    private void DestroyPlayerNetwork()
     {
         if (Life <= 0)
         {
@@ -86,14 +89,12 @@ public class Player : NetworkBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //collision = GameObject.FindGameObjectWithTag("SkillBat")
-        if (collision.tag == "PlayerSkills")
+        if (collision.CompareTag("PlayerSkills"))
         {
             if (isServer)
             {
                 Life -= 20;
             }
-            
         }
     }
 }

@@ -12,7 +12,6 @@ public class UIController : MonoBehaviour
     private Player player;
     void Start()
     {
-        //player = GameObject.FindWithTag("Player").GetComponent<Player>();
         player = GetComponentInParent<Player>();
     }
     public void Update()

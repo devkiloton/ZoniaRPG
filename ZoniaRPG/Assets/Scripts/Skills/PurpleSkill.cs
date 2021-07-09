@@ -16,19 +16,17 @@ public class PurpleSkill : NetworkBehaviour
     [SerializeField]
     private Animator anim;
     private Vector3 directionPlayer;
-    private Vector2 directionIdle; //letra maiuscula
+    private Vector2 directionIdle;
     public float DestroyAfter = 5;
     //private GameObject BatCollider;
 
     void Start()
     {
         anim = GetComponent<Animator>();
-            //DirectionPlayer = FindObjectOfType<Player>();
-            //idleRotationReference = FindObjectOfType<AnimationsController>();
         directionIdle = new Vector2(idleRotationReference.HorizontalIdle(), idleRotationReference.VerticalIdle());
         directionPlayer = DirectionPlayer.Direction;
         RigidBody = GetComponent<Rigidbody2D>();
-        //BatCollider = GameObject.FindGameObjectWithTag("BatTag");
+
     }
     [Server]
     void DestroySelf()
@@ -45,24 +43,14 @@ public class PurpleSkill : NetworkBehaviour
             Time.deltaTime * Velocity * directionPlayer.normalized);
             if (directionPlayer.magnitude < 0.1)
             {
-
                 anim.SetFloat("XIdle", idleRotationReference.HorizontalIdle());
                 anim.SetFloat("YIdle", idleRotationReference.VerticalIdle());
                 anim.SetFloat("Velocity", idleRotationReference.Velocity());
                 RigidBody.MovePosition((Vector2)(transform.position) +
                                        Time.deltaTime * Velocity * directionIdle.normalized);
-
             }
         }
     }
-    /*private void OnTriggerStay2D(Collider2D collision)
-    {
-        collision = BatCollider.GetComponent<BoxCollider2D>();
-        if(collision.CompareTag("BatTag"))
-        {
-            Enemy.Instance.life -= 100;
-        }
-    }*/
     
     public override void OnStartServer()
     {
