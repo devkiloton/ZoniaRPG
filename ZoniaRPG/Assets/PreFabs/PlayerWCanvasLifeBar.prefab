@@ -55,6 +55,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerWCanvasLifeBar
       objectReference: {fileID: 0}
+    - target: {fileID: 2285763279181705144, guid: 5bc8e6f841b4c7a43abe116a9e353751, type: 3}
+      propertyPath: syncMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2285763279181705144, guid: 5bc8e6f841b4c7a43abe116a9e353751, type: 3}
+      propertyPath: compressRotation
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2285763279181705147, guid: 5bc8e6f841b4c7a43abe116a9e353751, type: 3}
       propertyPath: sceneId
       value: 0

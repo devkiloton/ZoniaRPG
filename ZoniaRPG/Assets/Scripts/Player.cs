@@ -18,7 +18,6 @@ public class Player : NetworkBehaviour
     public static Player Instance;
     public AnimationsController MyMovements { get; private set; }
     private Canvas canvas;
-    private GameObject skill;
     public Vector3 InitialDirection;
     public KeyCode Shot = KeyCode.Space;
 
@@ -53,19 +52,15 @@ public class Player : NetworkBehaviour
         RigidBodyPlayer.MovePosition(RigidBodyPlayer.position +
                                      speed * Time.fixedDeltaTime * Direction);
     }
-    [Command]
-    private void CmdFire()
+    [Command, ClientRpc]
+    void CmdFire()
     {
-        skill = Instantiate(Skill, transform.position, transform.rotation);
+
+        GameObject skill = Instantiate(Skill, transform.position, transform.rotation);
         Physics2D.IgnoreCollision(skill.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-        skill.GetComponent<PurpleSkill>().DirectionPlayer = this;
+        skill.GetComponent<BlueBall>().DirectionPlayer = this;
+        skill.GetComponent<BlueBall>().idleRotationReference = this.MyMovements;
         NetworkServer.Spawn(skill);
-        RpOnFire();
-    }
-    [ClientRpc]
-    private void RpOnFire()
-    {
-        skill.GetComponent<PurpleSkill>().idleRotationReference = this.MyMovements;
     }
     private void Input()
     {
@@ -84,7 +79,6 @@ public class Player : NetworkBehaviour
         if (Life <= 0)
         {
             NetworkServer.Destroy(gameObject);
-            //SceneManager.LoadScene("GameOver");
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

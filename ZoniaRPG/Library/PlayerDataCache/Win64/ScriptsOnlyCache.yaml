@@ -1,20 +1,24 @@
 ScriptsOnlyBuild:
   usedScripts:
+    Assembly-CSharp.dll:
+    - AnimationsController
+    - BlueBall
+    - Player
+    - UIController
     Mirror.Components.dll:
+    - Mirror.NetworkAnimator
     - Mirror.NetworkTransform
-    Mirror.Examples.dll:
-    - Mirror.Examples.Tanks.Projectile
-    - Mirror.Examples.Tanks.Tank
     Mirror.dll:
     - Mirror.NetworkIdentity
     - Mirror.NetworkManager
     - Mirror.NetworkManagerHUD
     - Mirror.NetworkStartPosition
-    - kcp2k.KcpTransport
+    - Mirror.TelepathyTransport
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
+    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.IK.Runtime.dll:
     - UnityEditor.U2D.IK.IKEditorManagerHelper
     Unity.2D.Tilemap.Editor.dll:
@@ -37,8 +41,16 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
+    UnityEngine.UI.dll:
+    - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.Image
+    - UnityEngine.UI.Slider
+    - UnityEngine.UI.Text
   sceneClasses:
-    Assets/Mirror/Examples/Tanks/Scenes/Scene.unity:
+    Assets/Scenes/Game.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -47,23 +59,21 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 21
       Script: {instanceID: 0}
-    - Class: 23
-      Script: {instanceID: 0}
     - Class: 28
-      Script: {instanceID: 0}
-    - Class: 33
-      Script: {instanceID: 0}
-    - Class: 43
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
-    - Class: 54
+    - Class: 50
       Script: {instanceID: 0}
-    - Class: 64
+    - Class: 58
+      Script: {instanceID: 0}
+    - Class: 60
+      Script: {instanceID: 0}
+    - Class: 61
       Script: {instanceID: 0}
     - Class: 74
       Script: {instanceID: 0}
-    - Class: 90
+    - Class: 81
       Script: {instanceID: 0}
     - Class: 91
       Script: {instanceID: 0}
@@ -71,41 +81,69 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
-    - Class: 108
-      Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 3466}
+      Script: {instanceID: 640}
     - Class: 114
-      Script: {instanceID: 4918}
+      Script: {instanceID: 1500}
     - Class: 114
-      Script: {instanceID: 5058}
+      Script: {instanceID: 1502}
     - Class: 114
-      Script: {instanceID: 5510}
+      Script: {instanceID: 1504}
     - Class: 114
-      Script: {instanceID: 5676}
+      Script: {instanceID: 1506}
     - Class: 114
-      Script: {instanceID: 6762}
+      Script: {instanceID: 1852}
     - Class: 114
-      Script: {instanceID: 8158}
+      Script: {instanceID: 2770}
     - Class: 114
-      Script: {instanceID: 8648}
+      Script: {instanceID: 3042}
+    - Class: 114
+      Script: {instanceID: 3122}
+    - Class: 114
+      Script: {instanceID: 3226}
+    - Class: 114
+      Script: {instanceID: 3468}
+    - Class: 114
+      Script: {instanceID: 4922}
+    - Class: 114
+      Script: {instanceID: 5062}
+    - Class: 114
+      Script: {instanceID: 5130}
+    - Class: 114
+      Script: {instanceID: 5420}
+    - Class: 114
+      Script: {instanceID: 6520}
+    - Class: 114
+      Script: {instanceID: 6768}
+    - Class: 114
+      Script: {instanceID: 7122}
+    - Class: 114
+      Script: {instanceID: 8658}
     - Class: 115
       Script: {instanceID: 0}
-    - Class: 135
-      Script: {instanceID: 0}
-    - Class: 136
-      Script: {instanceID: 0}
-    - Class: 137
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
-    - Class: 195
-      Script: {instanceID: 0}
     - Class: 196
       Script: {instanceID: 0}
-    - Class: 238
+    - Class: 212
       Script: {instanceID: 0}
-    - Class: 850595691
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    - Class: 19719996
+      Script: {instanceID: 0}
+    - Class: 156049354
+      Script: {instanceID: 0}
+    - Class: 483693784
+      Script: {instanceID: 0}
+    - Class: 1839735485
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -224,12 +262,6 @@ ScriptsOnlyBuild:
     className: UnityOnMouseExitMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 4c75bd0fddac974b54a67d5adc20b116
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: BatSkill
-  - hash:
-      serializedVersion: 2
       Hash: 192ca9716d03752ea1d90a78bc2daac9
     assemblyName: Mirror.Examples.dll
     namespaceName: Mirror.Examples.NetworkRoom
@@ -240,12 +272,6 @@ ScriptsOnlyBuild:
     assemblyName: Mirror.Examples.dll
     namespaceName: Mirror.Examples.MultipleAdditiveScenes
     className: MultiSceneNetManager
-  - hash:
-      serializedVersion: 2
-      Hash: 1c754d0beb0a4a618eb63bdf6a32f077
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: BatRadar
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -320,12 +346,6 @@ ScriptsOnlyBuild:
     className: UnityOnBecameVisibleMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 25fb09d4b5853693edd3cb674f7a5bd2
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Enemy
-  - hash:
-      serializedVersion: 2
       Hash: cc4274b586df3c02688bac01b88bd16c
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
@@ -389,7 +409,7 @@ ScriptsOnlyBuild:
       Hash: 9911e705b7a181864e4f1372a83ed218
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: PurpleSkill
+    className: BlueBall
   - hash:
       serializedVersion: 2
       Hash: f40fedccd4adbc76605bea6d67537e4b
@@ -1526,5 +1546,5 @@ ScriptsOnlyBuild:
     className: UnityOnSliderValueChangedMessageListener
   platform: 19
   scenePathNames:
-  - Assets/Mirror/Examples/Tanks/Scenes/Scene.unity
-  playerPath: C:/Users/Yarego Brozek/Desktop/builds_zonia_rpg/builds_zonia_rpg_13/ZoniaRPG.exe
+  - Assets/Scenes/Game.unity
+  playerPath: C:/Users/Yarego Brozek/Desktop/builds/builds_zonia_rpg/builds_zonia_rpg_16/ZoniaRPG.exe

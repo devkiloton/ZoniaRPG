@@ -66,19 +66,19 @@ namespace Mirror
                 // Server + Client
                 if (Application.platform != RuntimePlatform.WebGLPlayer)
                 {
-                    if (GUILayout.Button("Host (Server + Client)"))
+                    /*if (GUILayout.Button("Host (Server + Client)"))
                     {
                         manager.StartHost();
-                    }
+                    }*/
                 }
 
                 // Client + IP
                 GUILayout.BeginHorizontal();
-                if (GUILayout.Button("Client"))
+                if (GUILayout.Button("Join Game"))
                 {
                     manager.StartClient();
                 }
-                manager.networkAddress = GUILayout.TextField(manager.networkAddress);
+                //manager.networkAddress = GUILayout.TextField(manager.networkAddress);
                 GUILayout.EndHorizontal();
 
                 // Server Only
@@ -89,13 +89,13 @@ namespace Mirror
                 }
                 else
                 {
-                    if (GUILayout.Button("Server Only")) manager.StartServer();
+                    //if (GUILayout.Button("Server Only")) manager.StartServer();
                 }
             }
             else
             {
                 // Connecting
-                GUILayout.Label("Connecting to " + manager.networkAddress + "..");
+                GUILayout.Label("Connecting ...");
                 if (GUILayout.Button("Cancel Connection Attempt"))
                 {
                     manager.StopClient();
@@ -111,17 +111,17 @@ namespace Mirror
             //   Client: ...
             if (NetworkServer.active && NetworkClient.active)
             {
-                GUILayout.Label($"<b>Host</b>: running via {Transport.activeTransport}");
+                //GUILayout.Label($"<b>Host</b>: running via {Transport.activeTransport}");
             }
             // server only
             else if (NetworkServer.active)
             {
-                GUILayout.Label($"<b>Server</b>: running via {Transport.activeTransport}");
+                //GUILayout.Label($"<b>Server</b>: running via {Transport.activeTransport}");
             }
             // client only
             else if (NetworkClient.isConnected)
             {
-                GUILayout.Label($"<b>Client</b>: connected to {manager.networkAddress} via {Transport.activeTransport}");
+                //GUILayout.Label($"<b>Client</b>: connected to {manager.networkAddress} via {Transport.activeTransport}");
             }
         }
 
@@ -138,7 +138,7 @@ namespace Mirror
             // stop client if client-only
             else if (NetworkClient.isConnected)
             {
-                if (GUILayout.Button("Stop Client"))
+                if (GUILayout.Button("Quit"))
                 {
                     manager.StopClient();
                 }
@@ -146,7 +146,7 @@ namespace Mirror
             // stop server if server-only
             else if (NetworkServer.active)
             {
-                if (GUILayout.Button("Stop Server"))
+                if (GUILayout.Button("Quit"))
                 {
                     manager.StopServer();
                 }
